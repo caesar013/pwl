@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function hello()
-    {
-        return "Hello";
+    public function index(){
+        echo "Selamat Datang";
     }
 }
