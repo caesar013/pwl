@@ -14,15 +14,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        echo "<h1>Selamat Datang di Halaman Contact Us</h1>";
-        echo "<br>";
-        echo "<ul>";
-        echo "<li><a href='/contact-us/create'>Create</a></li>";
-        echo "<li><a href='/contact-us/store'>Store</a></li>";
-        echo "<li><a href='/contact-us/show'>Show</a></li>";
-        echo "<li><a href='/contact-us/update'>Update</a></li>";
-        echo "<li><a href='/contact-us/destroy'>Destroy</a></li>";
-        echo "</ul>"; 
+        return view('p1_js3.contact-us');
     }
 
     /**
