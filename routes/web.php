@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\NewsController;
@@ -93,3 +94,5 @@ Route::resource('contact-us', ContactUsController::class);
 Route::get('/profile', [ProfileController::class, 'index']);
 
 Route::get('/history', [HistoryController::class, 'index']);
+
+Route::get('/artikel', [ArtikelController::class, 'index']);
