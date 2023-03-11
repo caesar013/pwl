@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('artikel')) {
-            Schema::create('artikel', function (Blueprint $table) {
-                $table->String('id')->primary();
-                $table->String('judul');
-                $table->String('penulis');
-                $table->date('tgl_terbit');
-                $table->timestamps();
-            });
-        }
-
+        Schema::create('data_mata_kuliah', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('dosen');
+            $table->string('hari');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artikel');
+        Schema::dropIfExists('data_mata_kuliah');
     }
 };
