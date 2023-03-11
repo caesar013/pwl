@@ -32,10 +32,12 @@
               </thead>
               <tbody>
                 @foreach ($data as $a)
-                    <tr>{{$a->id}}</tr>
-                    <tr>{{$a->nama}}</tr>
-                    <tr>{{$a->hari}}</tr>
-                    <tr>{{$a->dosen}}</tr>
+                <tr>
+                    <td>{{$a->id}}</td>
+                    <td>{{$a->nama}}</td>
+                    <td>{{$a->hari}}</td>
+                    <td>{{$a->dosen}}</td>
+                </tr>
                 @endforeach
               </tbody>
             </table>

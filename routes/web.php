@@ -7,6 +7,8 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\DataKeluargaController;
+use App\Http\Controllers\DataMataKuliahController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
@@ -15,6 +17,7 @@ use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Helper\ProgressBar;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\HobiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +32,7 @@ use App\Http\Controllers\HistoryController;
  //
 // Route::get('/', [HomeController::class,"hello"]);
 
-// Route::get('/', function() 
+// Route::get('/', function()
 // {
 //     echo "Selamat Datang";
 // });
@@ -57,7 +60,7 @@ use App\Http\Controllers\HistoryController;
 // Route::get('/articles/{id}', [ArticleController::class, 'articles']);
 
 
-// Halaman homepage 
+// Halaman homepage
 Route::get('/', [HomeController::class, 'index']);
 
 // Halaman category (route prefix)
@@ -96,3 +99,9 @@ Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/history', [HistoryController::class, 'index']);
 
 Route::get('/artikel', [ArtikelController::class, 'index']);
+
+Route::get('/hobby', [HobiController::class, 'index']);
+
+Route::get('/family', [DataKeluargaController::class, 'index']);
+
+Route::get('/college', [DataMataKuliahController::class, 'index']);

@@ -30,8 +30,10 @@
               </thead>
               <tbody>
                 @foreach ($data as $a)
-                    <tr>{{$a->id}}</tr>
-                    <tr>{{$a->hobi}}</tr>
+                <tr>
+                    <td>{{$a->id}}</td>
+                    <td>{{$a->hobi}}</td>
+                </tr>
                 @endforeach
               </tbody>
             </table>

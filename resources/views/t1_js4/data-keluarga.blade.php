@@ -35,13 +35,15 @@
               </thead>
               <tbody>
                 @foreach ($data as $a)
-                    <tr>{{$a->id}}</tr>
-                    <tr>{{$a->nama}}</tr>
-                    <tr>{{$a->jenis_kelamin}}</tr>
-                    <tr>{{$a->tanggal_lahir}}</tr>
-                    <tr>{{$a->agama}}</tr>
-                    <tr>{{$a->pekerjaan}}</tr>
-                    <tr>{{$a->status}}</tr>
+                <tr>
+                    <td>{{$a->id}}</td>
+                    <td>{{$a->nama}}</td>
+                    <td>{{$a->jenis_kelamin}}</td>
+                    <td>{{$a->tanggal_lahir}}</td>
+                    <td>{{$a->agama}}</td>
+                    <td>{{$a->pekerjaan}}</td>
+                    <td>{{$a->status}}</td>
+                </tr>
                 @endforeach
               </tbody>
             </table>

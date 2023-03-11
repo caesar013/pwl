@@ -13,6 +13,6 @@ class HomeController extends Controller
         public function index()
         {
             // throw new Exception("Error Processing Request", 1);
-            return view('beranda');
+            return view('t1_js4.home');
         }
 }
