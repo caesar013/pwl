@@ -9,7 +9,7 @@ class DataMataKuliahController extends Controller
 {
     public function index()
     {
-        return view('t1_js4.data-mata-kuliah', [
+        return view('main.data-mata-kuliah', [
             'data' => DataMataKuliah::all()
         ]);
     }

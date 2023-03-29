@@ -14,6 +14,6 @@ class ProfileController extends Controller
             'cp' => '08986637124',
             'nim' => '2141720175'
         ];
-        return view('p2_js3.profile', $data);
+        return view('main.profile', $data);
     }
 }

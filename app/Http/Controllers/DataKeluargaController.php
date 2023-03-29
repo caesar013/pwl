@@ -9,7 +9,7 @@ class DataKeluargaController extends Controller
 {
     public function index()
     {
-        return view('t1_js4.data-keluarga', [
+        return view('main.data-keluarga', [
             'data' => DataKeluarga::all()
         ]);
     }

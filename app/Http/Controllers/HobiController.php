@@ -9,7 +9,7 @@ class HobiController extends Controller
 {
     public function index()
     {
-        return view('t1_js4.hobi', [
+        return view('main.hobi', [
             'data' => Hobi::all()
         ]);
     }

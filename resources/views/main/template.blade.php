@@ -18,16 +18,16 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-@include('t1_js4.navbar')
+@include('main.navbar')
 
   <!-- Main Sidebar Container -->
-@include('t1_js4.sidebar')
+@include('main.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   @yield('content')
 
   <!-- Main Footer -->
-@include('t1_js4.footer')
+@include('main.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

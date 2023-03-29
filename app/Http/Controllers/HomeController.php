@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    // public function index(){
-    //     return view('p1_js3.home');
-    // }
-        public function index()
-        {
-            // throw new Exception("Error Processing Request", 1);
-            return view('t1_js4.home');
-        }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('main.home');
+    }
 }
