@@ -154,13 +154,13 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/artikel', [ArtikelController::class, 'index']);
 
-    Route::get('/hobby', [HobiController::class, 'index']);
-
-    Route::get('/family', [DataKeluargaController::class, 'index']);
-
-    Route::get('/college', [DataMataKuliahController::class, 'index']);
-
     Route::get('/', [HomeController::class, 'index']);
 
     Route::resource('/student', MahasiswaController::class);
+
+    Route::resource('/hobby', HobiController::class);
+
+    Route::resource('/family', DataKeluargaController::class);
+
+    Route::resource('/college', DataMataKuliahController::class);
 });

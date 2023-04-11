@@ -21,20 +21,39 @@
           </div>
         </div>
         <div class="card-body table-responsive p-0">
+            <a href="{{url('/hobby/create')}}" class="btn btn-sm btn-success my-2">Tambah Data</a>
             <table class="table table-hover text-nowrap">
               <thead>
                 <tr>
-                  <th>Nomor</th>
+                  <th>No</th>
                   <th>Hobi</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($data as $a)
-                <tr>
-                    <td>{{$a->id}}</td>
-                    <td>{{$a->hobi}}</td>
-                </tr>
-                @endforeach
+                @if ($data->count() >0)
+                    @foreach ($data as $i => $a)
+                        <tr>
+                            <td>{{++$i}}</td>
+                            <td>{{$a->hobi}}</td>
+                            <td>
+                                {{-- buat tombol --}}
+                                <a href="{{url('/hobby/'.$a->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="{{url('/hobby/'.$a->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            Data Tidak ada
+                        </td>
+                    </tr>
+                @endif
               </tbody>
             </table>
           </div>
