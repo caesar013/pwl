@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="{{url('/')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -74,7 +74,7 @@
             </a>
           </li> -->
           <li class="nav-item">
-            <a href="/history" class="nav-link">
+            <a href="{{url('/history')}}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Pengalaman Kuliah
@@ -144,21 +144,27 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/hobby" class="nav-link">
+                <a href="{{url('/hobby')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Hobi</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/family" class="nav-link">
+                <a href="{{url('/family')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Keluarga</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/college" class="nav-link">
+                <a href="{{url('/college')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kuliah</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/student')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mahasiswa</p>
                 </a>
               </li>
             </ul>

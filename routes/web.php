@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Helper\ProgressBar;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HobiController;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -160,4 +161,6 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/college', [DataMataKuliahController::class, 'index']);
 
     Route::get('/', [HomeController::class, 'index']);
+
+    Route::resource('/student', MahasiswaController::class);
 });
