@@ -43,7 +43,7 @@
             <!-- /.card-header -->
             <div class="card-body">
 
-                <form method="POST" action="{{ $url_form}}">
+                <form method="POST" action="{{$url_form}}">
                     @csrf
                     {!! (isset($mahasiswa))? method_field('PUT') : '' !!}
 
@@ -59,6 +59,18 @@
                         <label>Nama</label>
                         <input class="form-control @error('nama') is-invalid @enderror" value="{{ isset($mahasiswa)? $mahasiswa->nama : old('nama')}}" name="nama" type="text">
                         @error('nama')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kelas">Kelas</label>
+                        <select name="id" class="form-control">
+                            @foreach ($kelas as $kls)
+                                <option value="{{isset($mahasiswa)? $mahasiswa->kelas_id : old('id') }}">{{isset($mahasiswa)? $mahasiswa->kelas->nama_kelas : $kls->nama_kelas}}</option>
+                            @endforeach
+                        </select>
+                        @error('kelas')
                             <span class="error invalid-feedback">{{ $message }}</span>
                         @enderror
                     </div>

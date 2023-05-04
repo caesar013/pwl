@@ -28,6 +28,7 @@
                   <th>No</th>
                   <th>NIM</th>
                   <th>Nama</th>
+                  <th>Kelas</th>
                   <th>JK</th>
                   <th>HP</th>
                   <th>Action</th>
@@ -40,11 +41,13 @@
                         <td>{{++$i}}</td>
                         <td>{{$a->nim}}</td>
                         <td>{{$a->nama}}</td>
+                        <td>{{$a->kelas->nama_kelas}}</td>
                         <td>{{$a->jk}}</td>
                         <td>{{$a->hp}}</td>
                         <td>
                             {{-- Buat tombol edit dan delete --}}
                             <a href="{{url('/student/'.$a->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
+                            <a class="btn btn-info" href="{{ route('student.show',$a->nim) }}">Show</a>
                             <form action="{{url('/student/'.$a->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -55,7 +58,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="6" class="text-center">
+                        <td colspan="7" class="text-center">
                             Data Tidak ada
                         </td>
                     </tr>

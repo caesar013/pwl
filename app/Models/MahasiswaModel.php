@@ -16,6 +16,11 @@ class MahasiswaModel extends Model
         'tempat_lahir',
         'tanggal_lahir',
         'alamat',
-        'hp'
+        'hp',
+        'kelas_id',
     ];
+
+    public function kelas(){
+        return $this->belongsTo(KelasModel::class, 'kelas_id', 'id');
+    }
 }
