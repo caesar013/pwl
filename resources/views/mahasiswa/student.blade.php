@@ -35,8 +35,8 @@
                 </tr>
               </thead>
               <tbody>
-                @if ($mahasiswa->count() > 0)
-                    @foreach ($mahasiswa as $i => $a)
+                @if ($paginate->count() > 0)
+                    @foreach ($paginate as $i => $a)
                     <tr>
                         <td>{{++$i}}</td>
                         <td>{{$a->nim}}</td>
@@ -46,9 +46,10 @@
                         <td>{{$a->hp}}</td>
                         <td>
                             {{-- Buat tombol edit dan delete --}}
-                            <a href="{{url('/student/'.$a->id.'/edit')}}" class="btn btn-sm btn-warning">Edit</a>
-                            <a class="btn btn-info" href="{{ route('student.show',$a->nim) }}">Show</a>
-                            <form action="{{url('/student/'.$a->id)}}" method="post">
+                            <a href="{{ route('student.edit', [$a->id]) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a class="btn btn-sm btn-info" href="{{ route('student.show',[$a->id]) }}">Show</a>
+                            <a href="{{route('score.show', [$a->id])}}" class="btn btn-sm btn-success">Nilai</a>
+                            <form action="{{ route('student.destroy', [$a->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger">Hapus</button>

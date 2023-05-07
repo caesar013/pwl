@@ -5,7 +5,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="card" style="width: 24rem;">
                 <div class="card-header">
-                    Detail Mahasiswa
+
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">

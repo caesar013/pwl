@@ -77,7 +77,7 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        $mhs = MahasiswaModel::with('kelas')->where('nim', $id)->first();
+        $mhs = MahasiswaModel::with('kelas')->where('id', $id)->first();
         return view('mahasiswa.detail', ['mhs' => $mhs]);
     }
 
@@ -146,7 +146,7 @@ class MahasiswaController extends Controller
     public function destroy($id)
     {
         MahasiswaModel::where('id','=',$id)->delete();
-        return redirect('/student')
+        return redirect()->route('student.index')
         ->with('Success', 'Data Mahasiswa Berhasil dihapus');
     }
 }

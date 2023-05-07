@@ -20,6 +20,8 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HobiController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiswaMatakuliahController;
+use App\Models\MahasiswaMatakuliahModel;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -163,4 +165,6 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/family', DataKeluargaController::class);
 
     Route::resource('/college', DataMataKuliahController::class);
+
+    Route::resource('/score', MahasiswaMatakuliahController::class);
 });
