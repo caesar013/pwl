@@ -59,6 +59,7 @@
                             @endif
                         </tbody>
                     </table>
+                    <a class="btn btn-success mt3" href="{{ route('student.index') }}">Kembali</a>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
