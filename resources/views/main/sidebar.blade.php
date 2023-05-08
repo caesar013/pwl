@@ -156,13 +156,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/college')}}" class="nav-link">
+                <a href="{{route('subject.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Kuliah</p>
+                  <p>Mata Kuliah</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/student')}}" class="nav-link">
+                <a href="{{route('student.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Mahasiswa</p>
                 </a>

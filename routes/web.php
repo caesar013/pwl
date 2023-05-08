@@ -21,7 +21,9 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HobiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaMatakuliahController;
+use App\Http\Controllers\MatakuliahController;
 use App\Models\MahasiswaMatakuliahModel;
+use App\Models\MatakuliahModel;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -167,4 +169,6 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/college', DataMataKuliahController::class);
 
     Route::resource('/score', MahasiswaMatakuliahController::class);
+
+    Route::resource('/subject', MatakuliahController::class);
 });
