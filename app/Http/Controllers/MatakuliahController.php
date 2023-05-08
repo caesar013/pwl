@@ -68,9 +68,9 @@ class MatakuliahController extends Controller
     public function edit($id)
     {
         $subject = MatakuliahModel::find($id);
-        return view('mahasiswa.create_student')
+        return view('mahasiswa.create_subject')
         ->with('data', $subject)
-        ->with('url_form', route('subject.update', $id));
+        ->with('url_form', route('subject.update', [$id]));
     }
 
     /**
@@ -83,12 +83,17 @@ class MatakuliahController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_matkul' => 'required|string|max:30',
+            'nama_matkul' => 'required|string|max:30|unique:matakuliah,nama_matkul,'.$id,
             'sks' => 'required|integer|max:11',
             'jam' => 'required|integer|max:11',
             'semester' => 'required|string|max:25',
         ]);
-        $return = MatakuliahModel::where('id', '=', $id)->update($request->except(['_token']));
+        $sub = MatakuliahModel::with('mahasiswa_matakuliah')->where('id', $id)->first();
+        $sub->nama_matkul = $request->get('nama_matkul');
+        $sub->sks = $request->get('sks');
+        $sub->jam = $request->get('jam');
+        $sub->semester = $request->get('semester');
+        $sub->save();
         return redirect()->route('subject.index')
         ->with('success', 'Data Berhasil diubah!');
     }

@@ -69,6 +69,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="Jam">Jam</label>
+                                    <input class="form-control @error('jam') is-invalid @enderror"
+                                        value="{{ isset($data) ? $data->jam : old('jam') }}" name="jam"
+                                        type="text">
+                                    @error('jam')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
                                     <label for="Semester">Semester</label>
                                     <input class="form-control @error('semester') is-invalid @enderror"
                                         value="{{ isset($data) ? $data->semester : old('semester') }}" name="semester"
