@@ -46,14 +46,16 @@
                         <td>{{$a->hp}}</td>
                         <td>
                             {{-- Buat tombol edit dan delete --}}
-                            <a href="{{ route('student.edit', [$a->id]) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <a class="btn btn-sm btn-info" href="{{ route('student.show',[$a->id]) }}">Show</a>
-                            <a href="{{route('score.show', [$a->id])}}" class="btn btn-sm btn-success">Nilai</a>
-                            <form action="{{ route('student.destroy', [$a->id]) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                            </form>
+                            <div class="btn-group">
+                                <a href="{{ route('student.edit', [$a->id]) }}" class="btn btn-sm btn-warning mr-2">Edit</a>
+                                <a class="btn btn-sm btn-info mr-2" href="{{ route('student.show',[$a->id]) }}">Show</a>
+                                <a href="{{route('score.show', [$a->id])}}" class="btn btn-sm btn-success mr-2">Nilai</a>
+                                <form action="{{ route('student.destroy', [$a->id]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger mr-2">Hapus</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
