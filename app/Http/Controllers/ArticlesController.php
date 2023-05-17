@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Articles;
 use Illuminate\Http\Request;
+use Storage;
 
 class ArticlesController extends Controller
 {
@@ -35,6 +36,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
+        $image_name = null;
         if ($request->file('image')) {
             $image_name = $request->file('image')->store('images', 'public');
         }
@@ -64,21 +66,35 @@ class ArticlesController extends Controller
      * @param  \App\Models\Articles  $articles
      * @return \Illuminate\Http\Response
      */
-    public function edit(Articles $articles)
+    public function edit($id)
     {
-        //
+        $article = Articles::find($id);
+
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $requestx
      * @param  \App\Models\Articles  $articles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Articles $articles)
+    public function update(Request $request, $id)
     {
-        //
+        $article = Articles::find($id);
+
+        $article->title = $request->title;
+        $article->content = $request->content;
+
+        if ($article->featured_image && file_exists(storage_path('app/public/'.$article->featured_image))) {
+            \Storage::delete('/public'.$article->featured_image);
+        }
+        $image_name = $request->file('image')->store('images', 'public');
+        $article->featured_image = $image_name;
+
+        $article->save();
+        return 'Artikel berhasil diubah!';
     }
 
     /**

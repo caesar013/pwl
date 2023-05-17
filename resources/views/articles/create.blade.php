@@ -5,7 +5,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="container">
-                <form action="/articles" method="post" enctype="multipart/formdata">
+                <form action="/articles" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Title: </label>
