@@ -91,5 +91,8 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('/subject', MatakuliahController::class);
 
+    Route::get('/articles/cetak_pdf', [ArticlesController::class, 'cetak_pdf']);
+
     Route::resource('/articles', ArticlesController::class);
+
 });
