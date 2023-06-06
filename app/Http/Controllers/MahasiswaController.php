@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\KelasModel;
 use App\Models\MahasiswaModel;
 use Illuminate\Http\Request;
+use Validator;
+use Yajra\DataTables\DataTables;
 
 class MahasiswaController extends Controller
 {
@@ -15,9 +17,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mhs = MahasiswaModel::with('kelas')->get();
-        $paginate = MahasiswaModel::orderBy('id', 'asc')->paginate(3);
-        return view('mahasiswa.student', ['mahasiswa' => $mhs, 'paginate' => $paginate]);
+        return view('mahasiswa.student', ['kelas' => KelasModel::all()]);
     }
 
     /**
@@ -39,34 +39,34 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rule = [
             'nim' => 'required|string|max:10|unique:mahasiswa,nim',
             'nama' => 'required|string|max:50',
-            'jk' => 'required|in:l,p',
-            'tempat_lahir' => 'required|string|max:50',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string|max:255',
             'hp' => 'required|digits_between:6,15',
-            'id' => 'required'
+            'jk' => 'required|string|in:l,p',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required|string',
+            'alamat' => 'required|string',
+            'kelas_id' => 'required|exists:kelas,id',
+        ];
+
+        $validator = Validator::make($request->all(), $rule);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal ditambahkan. ' .$validator->errors()->first(),
+                'data' => $validator->errors()
+            ]);
+        }
+
+        $mhs = MahasiswaModel::create($request->all());
+        return response()->json([
+            'status' => ($mhs),
+            'modal_close' => false,
+            'message' => ($mhs)? 'Data berhasil ditambahkan' : 'Data gagal ditambahkan',
+            'data' => null
         ]);
-
-        $mhs = new MahasiswaModel();
-        $mhs->nim = $request->get('nim');
-        $mhs->nama = $request->get('nama');
-        $mhs->jk = $request->get('jk');
-        $mhs->tempat_lahir = $request->get('tempat_lahir');
-        $mhs->tanggal_lahir = $request->get('tanggal_lahir');
-        $mhs->hp = $request->get('hp');
-        $mhs->save();
-
-        $kelas = new KelasModel();
-        $kelas->id = $request->get('id');
-
-
-        $mhs->kelas()->associate($kelas);
-        $mhs->save();
-        // jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('student.index')->with('success', 'Data mahasiswa Berhasil ditambahkan');
     }
 
     /**
@@ -106,35 +106,35 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rule = [
             'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,
             'nama' => 'required|string|max:50',
-            'jk' => 'required|in:l,p',
-            'tempat_lahir' => 'required|string|max:50',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string|max:255',
             'hp' => 'required|digits_between:6,15',
-            'id' => 'required|exists:kelas,id'
+            'jk' => 'required|string|in:l,p',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required|string',
+            'alamat' => 'required|string',
+            'kelas_id' => 'required|exists:kelas,id',
+        ];
+
+        $validator = Validator::make($request->all(), $rule);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal diedit. ' .$validator->errors()->first(),
+                'data' => $validator->errors()
+            ]);
+        }
+
+        $mhs = MahasiswaModel::where('id', $id)->update($request->except('_token', '_method'));
+
+        return response()->json([
+            'status' => ($mhs),
+            'modal_close' => $mhs,
+            'message' => ($mhs)? 'Data berhasil diedit' : 'Data gagal diedit',
+            'data' => null
         ]);
-
-        $mhs = MahasiswaModel::with('kelas')->where('id', $id)->first();
-        $mhs->nim = $request->get('nim');
-        $mhs->nama = $request->get('nama');
-        $mhs->jk = $request->get('jk');
-        $mhs->tempat_lahir = $request->get('tempat_lahir');
-        $mhs->tanggal_lahir = $request->get('tanggal_lahir');
-        $mhs->alamat = $request->get('alamat');
-        $mhs->hp = $request->get('hp');
-        $mhs->save();
-
-        $kelas = new KelasModel();
-        $kelas->id = $request->get('id');
-
-        $mhs->kelas()->associate($kelas);
-        $mhs->save();
-        // jika berhasil update, kita kembalikan pada halaman student
-        return redirect()->route('student.index')
-        ->with('success', "Data Mahasiswa berhasil diedit");
     }
 
     /**
@@ -148,5 +148,15 @@ class MahasiswaController extends Controller
         MahasiswaModel::where('id','=',$id)->delete();
         return redirect()->route('student.index')
         ->with('Success', 'Data Mahasiswa Berhasil dihapus');
+    }
+
+    public function data()
+    {
+        $data = MahasiswaModel::selectRaw('id, nim, nama, hp, jk, tanggal_lahir, tempat_lahir, alamat, kelas_id')->with(['kelas']);
+
+
+        return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->make(true);
     }
 }

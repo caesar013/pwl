@@ -95,4 +95,6 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('/articles', ArticlesController::class);
 
+    Route::post('/mahasiswa/data', [MahasiswaController::class, 'data']);
+
 });

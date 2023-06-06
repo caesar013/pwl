@@ -18,6 +18,7 @@ class MahasiswaModel extends Model
         'alamat',
         'hp',
         'kelas_id',
+        'featured_image',
     ];
 
     public function kelas(){
